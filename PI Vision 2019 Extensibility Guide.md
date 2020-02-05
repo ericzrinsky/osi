@@ -105,13 +105,13 @@ Symbol files should adhere to the following naming conventions:
 
 Before you begin development, OSIsoft recommends that you place **PI Vision** into debug mode. To do so, edit the web.config file in your **PI Vision** installation folder to change the compilation tag, under system.web, from:
 
-```csharp
+```javascript
 <compilation debug=\"false\" targetFramework=\"4.8\"/\>
 ```
 
 to
 
-```csharp
+```javascript
 <compilation debug=\"true\" targetFramework=\"4.8\"/\>
 ```
 
@@ -132,7 +132,7 @@ The JavaScript implementation file has three parts: definition, registration, an
 
 As a best practice, you should wrap all PI Vision symbols in an immediately-invoked function expression (IIFE). An IIFE is a JavaScript function that is executed as soon as it is defined. The IIFE takes in the global PI Visualization object, which is passed in as a parameter.
 
-```csharp
+```javascript
 (function (PV) {
     'use strict';
 })(window.PIVisualization);
@@ -144,7 +144,7 @@ Next, add the symbol registration. In this step, register your symbol with the P
 
 The implementation file looks like the code sample below after the previous steps:
 
-```csharp
+```javascript
 (function (PV) {
     'use strict';
 
@@ -279,7 +279,7 @@ The main parameter from getDefaultConfig that PI Vision system uses is DataShape
 
 The datasourceBehavior property is determined by the following object, found in `\\Scripts\\app\\common\\PIVisualization.enumerations.js`:
 
-```csharp
+```javascript
 // Determines if a symbol can have 0, 1, or n number of datasources added to it.
 // This does not affect adding datasources for multistating a symbol.
 // This is redundant to the "symbol model" derived objects which also define this behavior;
@@ -296,7 +296,7 @@ Use the `datasourceBehavior` property to determine the types of data sources tha
 
 Below is a sample definition object from the native **PI Vision** Value symbol:
 
-```csharp
+```javascript
 var def = {
         typeName: 'value',
         displayName: PV.ResourceStrings.ValueSymbol,
@@ -361,7 +361,7 @@ TextResize: 'TextResize',
 
 The final part of the symbol implementation is the init function. The init function is defined on the prototype of the symbol container object created in `deriveVisualizationFromBase`.
 
-```csharp
+```javascript
 symbolVis.prototype.init = function (scope, element) {
 ```
 
@@ -376,7 +376,7 @@ Callback functions set inside the init function:
 
 Here is an example `init` function definition:
 
-```csharp
+```javascript
 (function (PV) {
     'use strict';
 
@@ -411,7 +411,7 @@ Here is an example `init` function definition:
 
 Example `dataUpdate` function:
 
-```csharp
+```javascript
 function dataUpdate(data) {
     if(data) {
         scope.value = data.Value;
@@ -425,7 +425,7 @@ function dataUpdate(data) {
 
 Example `configChanged` function:
 
-```csharp
+```javascript
 function configChanged(newConfig, oldConfig) {
     if (newConfig && oldConfig && !angular.equals(newConfig, oldConfig)) {
         showLabels(scope.Width, scope.Height);
@@ -435,7 +435,7 @@ function configChanged(newConfig, oldConfig) {
 
 Example `resize` function:
 
-```csharp
+```javascript
 function resize(width, height) {
     if (chart) {
         chart.setSize(width, height);
@@ -777,7 +777,7 @@ A symbol can define the entries in a context menu that is shown when the symbol 
 
 Here is an example of how to program the context menu:
 
-```csharp
+```javascript
 configOptions: function (context, clickedElement) {
     var options = [{
         title: 'Configure My Symbol', 
@@ -910,7 +910,7 @@ Please note, starting with **PI Coresight** 2016 R2, all newly created symbols s
 
 **Example code**:
 
-```csharp
+```javascript
 var def = {
     getDefaultConfig: function () {
         return {
@@ -932,7 +932,7 @@ Symbol formats of displays created or saved in versions prior to **PI Coresight*
 
 **Example code**:
 
-```csharp
+```javascript
 var def = {
     getDefaultConfig: function () {
         return PV.SymValueLabelOptions.getDefaultConfig({
@@ -1006,7 +1006,7 @@ Layers of a PI Vision tool pane
 
 Save files for a tool pane in the same directory, the `ext` folder, under:
 
-```csharp
+```javascript
 INSTALLATION\_FOLDER\\Scripts\\app\\editor\\tools\\ext
 ```
 
@@ -1022,7 +1022,7 @@ The JavaScript implementation file can be broken down into three parts: definiti
 
 Tool pane creation proceeds much like symbol creation, but is part of a different catalog.
 
-```csharp
+```javascript
 (function (PV) {
     'use strict';
 
@@ -1087,6 +1087,6 @@ All tool extensions automatically have a property called `Badge` set on their sc
 
 **Example code**:
 
-```csharp
+```javascript
 scope.Badge.raise("10");
 ```
