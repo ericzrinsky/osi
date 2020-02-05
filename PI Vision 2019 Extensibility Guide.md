@@ -1,5 +1,3 @@
-PI Vision 2019 Extensibility Guide
-
 # PI Vision 2019 Extensibility Guide
 
 OSIsoft, LLC
@@ -134,7 +132,7 @@ The JavaScript implementation file has three parts: definition, registration, an
 
 As a best practice, you should wrap all PI Vision symbols in an immediately-invoked function expression (IIFE). An IIFE is a JavaScript function that is executed as soon as it is defined. The IIFE takes in the global PI Visualization object, which is passed in as a parameter.
 
-```
+```csharp
 (function (PV) {
     'use strict';
 })(window.PIVisualization);
@@ -146,7 +144,7 @@ Next, add the symbol registration. In this step, register your symbol with the P
 
 The implementation file looks like the code sample below after the previous steps:
 
-```
+```csharp
 (function (PV) {
     'use strict';
 
@@ -281,7 +279,7 @@ The main parameter from getDefaultConfig that PI Vision system uses is DataShape
 
 The datasourceBehavior property is determined by the following object, found in `\\Scripts\\app\\common\\PIVisualization.enumerations.js`:
 
-```
+```csharp
 // Determines if a symbol can have 0, 1, or n number of datasources added to it.
 // This does not affect adding datasources for multistating a symbol.
 // This is redundant to the "symbol model" derived objects which also define this behavior;
@@ -298,7 +296,7 @@ Use the `datasourceBehavior` property to determine the types of data sources tha
 
 Below is a sample definition object from the native **PI Vision** Value symbol:
 
-```
+```csharp
 var def = {
         typeName: 'value',
         displayName: PV.ResourceStrings.ValueSymbol,
@@ -363,7 +361,7 @@ TextResize: 'TextResize',
 
 The final part of the symbol implementation is the init function. The init function is defined on the prototype of the symbol container object created in `deriveVisualizationFromBase`.
 
-```
+```csharp
 symbolVis.prototype.init = function (scope, element) {
 ```
 
@@ -378,7 +376,7 @@ Callback functions set inside the init function:
 
 Here is an example `init` function definition:
 
-```
+```csharp
 (function (PV) {
     'use strict';
 
@@ -413,7 +411,7 @@ Here is an example `init` function definition:
 
 Example `dataUpdate` function:
 
-```
+```csharp
 function dataUpdate(data) {
     if(data) {
         scope.value = data.Value;
@@ -427,7 +425,7 @@ function dataUpdate(data) {
 
 Example `configChanged` function:
 
-```
+```csharp
 function configChanged(newConfig, oldConfig) {
     if (newConfig && oldConfig && !angular.equals(newConfig, oldConfig)) {
         showLabels(scope.Width, scope.Height);
@@ -436,7 +434,8 @@ function configChanged(newConfig, oldConfig) {
 ```
 
 Example `resize` function:
-```
+
+```csharp
 function resize(width, height) {
     if (chart) {
         chart.setSize(width, height);
@@ -698,14 +697,13 @@ The presentation layer for a custom symbol is basic HTML with AngularJS for data
 
 Here is example HTML code for a symbol:
 
-```
+```html
 <div id="outer" 
      style="'position': 'relative'; width:100%; height:100%; border:1px solid white;">
     <div id="inner" 
          ng-style="{'background':config.Fill, 'width':innerWidth, 'height':innerHeight, bottom: '-1px', left: '1px', 'position': 'absolute'}">
     </div>
 </div>
-
 ```
 
 The example symbol is made up of two `div` elements: the outer `div` for the border and the inner `div` to show the data. The majority of the work is handled by AngularJS in the inner `div`. This `div` has an ng-style attribute, which is AngularJS's way of setting styles.
@@ -723,7 +721,7 @@ When writing styles for custom symbols, you should choose unique selectors; howe
 
 The most convenient way to signify a specific style target is through the use of unique class selectors:
 
-```
+```css
 <div class="my-custom-symbol">
     <span>Symbol Content</span>
 </div>
@@ -731,7 +729,7 @@ The most convenient way to signify a specific style target is through the use of
 
 Styles can then target this symbol without interfering with other parts of the application:
 
-```
+```css
 .my-custom-symbol {
   color: blue;
 }
@@ -748,7 +746,7 @@ The configuration options are shown on the symbol's context menu, via right-clic
 
 The example configuration HTML for a symbol below is defined in a file following the configuration naming convention of `sym-YourSymbolName-config.html`:
 
-```
+```html
 <div class="c-side-pane t-toolbar">
     <span style="color:#fff; margin-left:15px">{{::def.configure.orientationKeyword}}</span>
 </div>
@@ -779,7 +777,7 @@ A symbol can define the entries in a context menu that is shown when the symbol 
 
 Here is an example of how to program the context menu:
 
-```
+```csharp
 configOptions: function (context, clickedElement) {
     var options = [{
         title: 'Configure My Symbol', 
@@ -912,7 +910,7 @@ Please note, starting with **PI Coresight** 2016 R2, all newly created symbols s
 
 **Example code**:
 
-```
+```csharp
 var def = {
     getDefaultConfig: function () {
         return {
@@ -934,7 +932,7 @@ Symbol formats of displays created or saved in versions prior to **PI Coresight*
 
 **Example code**:
 
-```
+```csharp
 var def = {
     getDefaultConfig: function () {
         return PV.SymValueLabelOptions.getDefaultConfig({
@@ -1008,7 +1006,9 @@ Layers of a PI Vision tool pane
 
 Save files for a tool pane in the same directory, the `ext` folder, under:
 
-```INSTALLATION\_FOLDER\\Scripts\\app\\editor\\tools\\ext```
+```csharp
+INSTALLATION\_FOLDER\\Scripts\\app\\editor\\tools\\ext
+```
 
 If the `ext` folder is not present, create it.
 
@@ -1022,7 +1022,7 @@ The JavaScript implementation file can be broken down into three parts: definiti
 
 Tool pane creation proceeds much like symbol creation, but is part of a different catalog.
 
-```
+```csharp
 (function (PV) {
     'use strict';
 
@@ -1087,6 +1087,6 @@ All tool extensions automatically have a property called `Badge` set on their sc
 
 **Example code**:
 
-```
+```csharp
 scope.Badge.raise("10");
 ```
