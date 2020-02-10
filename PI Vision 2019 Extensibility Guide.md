@@ -113,11 +113,13 @@ As a best practice, you should wrap all PI Vision symbols in an immediately-invo
     'use strict';
 })(window.PIVisualization);
 ```
-1. Create the visualization object, which you will build upon later.  
-2. Create a function as a container for your symbol. The function is extended via PI Vision helper functions to add default behaviors.
-3. Add the symbol registration. 
-4. Register your symbol with the PI Vision symbol catalog.
-5. The implementation file looks like the code sample below after the previous steps:
+<ol>
+	<li>Create the visualization object, which you will build upon later.  </li>
+	<li>Create a function as a container for your symbol. The function is extended via PI Vision helper functions to add default behaviors.</li>
+	<li>Add the symbol registration.</li> 
+	<li>Register your symbol with the PI Vision symbol catalog.</li>
+	<ol type="a">
+		<li>The implementation file looks like the code sample below after the previous steps:</li></ol></ol>
 
 ```javascript
 (function (PV) {
@@ -128,7 +130,10 @@ As a best practice, you should wrap all PI Vision symbols in an immediately-invo
 
 })(window.PIVisualization);
 ```
-5. Next, augment the registration with an actual symbol definition. The definition object is a JSON object (key-value pairs) that sets defaults for the symbol. Possible settings in the object include:
+<ol start="5">
+	<li>Augment the registration with an actual symbol definition. </li>
+	<ol type="a">
+	<li>The definition object is a JSON object (key-value pairs) that sets defaults for the symbol. Possible settings in the object include:</li></ol></ol>
 
 <table>
     <tr>
