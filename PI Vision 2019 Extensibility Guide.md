@@ -1,27 +1,5 @@
 # PI Vision 2019 Extensibility Guide
 
-OSIsoft, LLC  
-1600 Alvarado St.  
-San Leandro, CA 94577 USA  
-Tel: (1) 510-297-5800  
-Fax: (1) 510-357-8136  
-Web: http://www.osisoft.com
-
-PI Vision 2019 Extensibility Guide
-
-© 2016 - 2019 by OSIsoft, LLC. All rights reserved.
-No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form or by any means, mechanical, photocopying, recording, or otherwise, without the prior written permission of OSIsoft, LLC.
-
-OSIsoft, the OSIsoft logo and logotype, Managed PI, OSIsoft Advanced Services, OSIsoft Cloud Services, OSIsoft Connected Services, PI ACE, PI Advanced Computing Engine, PI AF SDK, PI API, PI Asset Framework, PI Audit Viewer, PI Builder, PI Cloud Connect, PI Connectors, PI Data Archive, PI DataLink, PI DataLink Server, PI Developer’s Club, PI Integrator for Business Analytics, PI Interfaces, PI JDBC driver, PI Manual Logger, PI Notifications, PI ODBC, PI OLEDB Enterprise, PI OLEDB Provider, PI OPC HDA Server, PI ProcessBook, PI SDK, PI Server, PI Square, PI System, PI System Access, PI Vision, PI Visualization Suite, PI Web API, PI WebParts, PI Web Services, RLINK, and RtReports are all trademarks of OSIsoft, LLC. All other trademarks or trade names used herein are the property of their respective owners.
-
-U.S. GOVERNMENT RIGHTS
-
-Use, duplication or disclosure by the U.S. Government is subject to restrictions set forth in the OSIsoft, LLC license agreement and as provided in DFARS 227.7202, DFARS 252.227-7013, FAR 12.212, FAR 52.227, as applicable. OSIsoft, LLC.
-
-Version: 3.4
-
-Published: 4 February 2020
-
 <a id="top"></a>
 
 Contents
@@ -135,13 +113,11 @@ As a best practice, you should wrap all PI Vision symbols in an immediately-invo
     'use strict';
 })(window.PIVisualization);
 ```
-**FEEDBACK: Should the bellow content be treated with tasks with numbered steps since the customer is being given a procedure?**
-
-To begin, create the visualization object, which you will build upon later. In this step, create a function as a container for your symbol. The function is extended via PI Vision helper functions to add default behaviors.
-
-Next, add the symbol registration. In this step, register your symbol with the PI Vision symbol catalog.
-
-The implementation file looks like the code sample below after the previous steps:
+1. Create the visualization object, which you will build upon later.  
+2. Create a function as a container for your symbol. The function is extended via PI Vision helper functions to add default behaviors.
+3. Add the symbol registration. 
+4. Register your symbol with the PI Vision symbol catalog.
+5. The implementation file looks like the code sample below after the previous steps:
 
 ```javascript
 (function (PV) {
@@ -152,7 +128,7 @@ The implementation file looks like the code sample below after the previous step
 
 })(window.PIVisualization);
 ```
-Next, augment the registration with an actual symbol definition. The definition object is a JSON object (key-value pairs) that sets defaults for the symbol. Possible settings in the object include:
+5. Next, augment the registration with an actual symbol definition. The definition object is a JSON object (key-value pairs) that sets defaults for the symbol. Possible settings in the object include:
 
 <table>
     <tr>
@@ -260,9 +236,7 @@ Next, augment the registration with an actual symbol definition. The definition 
      <tr>
         <td><code>supportsCollections</code></td>
         <td>Boolean</td>
-        <td>Optional. Indicates whether the symbol can be included as part of collection symbols. Default is false. In order for the symbol to be driven by the collection data sources, the symbol must use one of the built-in data shapes. See <a href="#9">Data shapes</a>.
-
-</td>
+        <td>Optional. Indicates whether the symbol can be included as part of collection symbols. Default is false. In order for the symbol to be driven by the collection data sources, the symbol must use one of the built-in data shapes. See <a href="#9">Data shapes</a>.</td>
     </tr>
      <tr>
         <td><code>supportsDynamicSearchCriteria</code></td>
@@ -982,7 +956,6 @@ A symbol definition can define a property called `symbolFamily`. If the source a
 
 [Back to top](#top)
 
-**FEEDBACK: Seems like there is a missing section from the PDF? Upgrading existing symbols**
 
 <a id="19"></a>
 Tool pane extension
