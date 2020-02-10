@@ -1,10 +1,10 @@
 # PI Vision 2019 Extensibility Guide
 
-OSIsoft, LLC
-1600 Alvarado St.
-San Leandro, CA 94577 USA
-Tel: (01) 510-297-5800
-Fax: (01) 510-357-8136
+OSIsoft, LLC  
+1600 Alvarado St.  
+San Leandro, CA 94577 USA  
+Tel: (1) 510-297-5800  
+Fax: (1) 510-357-8136  
 Web: http://www.osisoft.com
 
 PI Vision 2019 Extensibility Guide
@@ -12,9 +12,7 @@ PI Vision 2019 Extensibility Guide
 © 2016 - 2019 by OSIsoft, LLC. All rights reserved.
 No part of this publication may be reproduced, stored in a retrieval system, or transmitted, in any form or by any means, mechanical, photocopying, recording, or otherwise, without the prior written permission of OSIsoft, LLC.
 
-OSIsoft, the OSIsoft logo and logotype, Managed PI, OSIsoft Advanced Services, OSIsoft Cloud Services, OSIsoft Connected Services, PI ACE, PI Advanced Computing Engine, PI AF SDK, PI API,
-PI Asset Framework, PI Audit Viewer, PI Builder, PI Cloud Connect, PI Connectors, PI Data Archive,
-PI DataLink, PI DataLink Server, PI Developer’s Club, PI Integrator for Business Analytics, PI Interfaces, PI JDBC driver, PI Manual Logger, PI Notifications, PI ODBC, PI OLEDB Enterprise, PI OLEDB Provider, PI OPC HDA Server, PI ProcessBook, PI SDK, PI Server, PI Square, PI System, PI System Access, PI Vision, PI Visualization Suite, PI Web API, PI WebParts, PI Web Services, RLINK, and RtReports are all trademarks of OSIsoft, LLC. All other trademarks or trade names used herein are the property of their respective owners.
+OSIsoft, the OSIsoft logo and logotype, Managed PI, OSIsoft Advanced Services, OSIsoft Cloud Services, OSIsoft Connected Services, PI ACE, PI Advanced Computing Engine, PI AF SDK, PI API, PI Asset Framework, PI Audit Viewer, PI Builder, PI Cloud Connect, PI Connectors, PI Data Archive, PI DataLink, PI DataLink Server, PI Developer’s Club, PI Integrator for Business Analytics, PI Interfaces, PI JDBC driver, PI Manual Logger, PI Notifications, PI ODBC, PI OLEDB Enterprise, PI OLEDB Provider, PI OPC HDA Server, PI ProcessBook, PI SDK, PI Server, PI Square, PI System, PI System Access, PI Vision, PI Visualization Suite, PI Web API, PI WebParts, PI Web Services, RLINK, and RtReports are all trademarks of OSIsoft, LLC. All other trademarks or trade names used herein are the property of their respective owners.
 
 U.S. GOVERNMENT RIGHTS
 
@@ -57,7 +55,7 @@ Contents
 Symbol extension
 ================
 
-You can extend your **PI Vision** installation to show data with custom symbols that aren’t available out of the box. This guide provides guidelines for adding custom symbols to your **PI Vision** installation. Your custom symbols will be available to any user browsing to the **PI Vision** server that hosts the custom symbol files described below.
+You can extend your PI Vision installation to show data with custom symbols that aren’t available out of the box. This guide provides guidelines for adding custom symbols to your PI Vision installation. Your custom symbols will be available to any user browsing to the PI Vision server that hosts the custom symbol files described below.
 
 [Back to top](#top)
 
@@ -65,7 +63,7 @@ You can extend your **PI Vision** installation to show data with custom symbols 
 Layers of a PI Vision symbol
 ----------------------------
 
-**PI Vision** symbols have three major layers:
+PI Vision symbols have three major layers:
 
 * [Implementation layer](#6)
 * [Presentation layer](#11)
@@ -80,7 +78,7 @@ The implementation layer is a JavaScript file that handles all of the symbol’s
 
 You should save all files for a symbol in the same directory, in the`ext` folder, under:
 
-`INSTALLATION\_FOLDER\\Scripts\\app\\editor\\symbols\\`
+`INSTALLATION\_FOLDER\Scripts\app\editor\symbols\`
 
 If you have external library files, create a `libraries` subfolder under the `ext` folder and place the external library files in that subfolder.
 
@@ -91,10 +89,10 @@ If you have external library files, create a `libraries` subfolder under the `ex
 
 Symbol files should adhere to the following naming conventions:
 
-* **Required files**
+* Required files
     * Implementation: `sym-YourSymbolName.js`
     * Presentation: `sym-YourSymbolName-template.html`
-* **Optional Files**
+* Optional Files
     * Configuration: `sym-YourSymbolName-config.html`
     * CSS: `sym-YourSymbolName.css`
 
@@ -103,21 +101,21 @@ Symbol files should adhere to the following naming conventions:
 <a id="5"></a>
 ### Before you begin
 
-Before you begin development, OSIsoft recommends that you place **PI Vision** into debug mode. To do so, edit the web.config file in your **PI Vision** installation folder to change the compilation tag, under system.web, from:
+Before you begin development, OSIsoft recommends that you place PI Vision into debug mode. To do so, edit the `web.config` file in your PI Vision installation folder to change the compilation tag, under `system.web`, from:
 
-```javascript
+```
 <compilation debug=\"false\" targetFramework=\"4.8\"/\>
 ```
 
 to
 
-```javascript
+```
 <compilation debug=\"true\" targetFramework=\"4.8\"/\>
 ```
 
-Debug mode disables the **PI Vision** bundling and minification system; this makes debugging your custom symbol easier.
+Debug mode disables the PI Vision bundling and minification system; this makes debugging your custom symbol easier.
 
-Note that in debug mode, **PI Vision** does not process minified JavaScript files.
+Note that in debug mode, PI Vision does not process minified JavaScript files.
 
 [Back to top](#top)
 
@@ -137,8 +135,9 @@ As a best practice, you should wrap all PI Vision symbols in an immediately-invo
     'use strict';
 })(window.PIVisualization);
 ```
+**FEEDBACK: Should the bellow content be treated with tasks with numbered steps since the customer is being given a procedure?**
 
-To begin, create the visualization object, which you will be built upon later. In this step, create a function as a container for your symbol. The function is extended via PI Vision helper functions to add default behaviors.
+To begin, create the visualization object, which you will build upon later. In this step, create a function as a container for your symbol. The function is extended via PI Vision helper functions to add default behaviors.
 
 Next, add the symbol registration. In this step, register your symbol with the PI Vision symbol catalog.
 
@@ -163,121 +162,121 @@ Next, augment the registration with an actual symbol definition. The definition 
     </tr>
     <tr>
         <td><code>typeName</code></td>
-        <td>String. Internal unique name of the symbol</td>
-        <td>Required</td>
+        <td>String</td>
+        <td>Required. Internal unique name of the symbol.</td>
     </tr>
      <tr>
         <td><code>displayName</code></td>
-        <td>String. Name shown in the symbol picker menu</td>
-        <td>Optional. <code>typeName</code> is used if left blank</td>
+        <td>String</td>
+        <td>Optional. Name shown in the symbol picker menu. <code>typeName</code> is used if left blank.</td>
     </tr>
      <tr>
         <td><code>datasourceBehavior</code></td>
-        <td>Number. Mapping to the number of <code>datasources</code> the symbol accepts</td>
-        <td>Optional. Can be None, Single, or Multiple. If not specified, None is used.</td>
+        <td>Number</td>
+        <td>Optional. Mapping to the number of <code>datasources</code> the symbol accepts. Can be None, Single, or Multiple. If not specified, None is used.</td>
     </tr>
      <tr>
         <td><code>iconUrl</code></td>
-        <td>String. Path to the icon used on the symbol selector</td>
-        <td>Optional. If not specified, a default image is displayed on the symbol selector menu. This can be the path to any image file type that can be added to an HTML <code>&lt;img&gt;</code> tag.</td>
+        <td>String</td>
+        <td>Optional. Path to the icon used on the symbol selector. If not specified, a default image is displayed on the symbol selector menu. This can be the path to any image file type that can be added to an HTML <code>&lt;img&gt;</code> tag.</td>
     </tr>
      <tr>
         <td><code>getDefaultConfig</code></td>
-        <td>Function. Function returning the default configuration to save in the database</td>
-        <td>Optional. A function used to specify the collection of parameters that should be serialized to the backend database. By convention, all properties should begin with an uppercase letter.</td>
+        <td>Function</td>
+        <td>Optional. Function returning the default configuration to save in the database. A function used to specify the collection of parameters that should be serialized to the backend database. By convention, all properties should begin with an uppercase letter.</td>
     </tr>
      <tr>
         <td><code>loadConfig</code></td>
-        <td>Function. Returns true if the saved configuration should be merged into the default configuration</td>
-        <td>Optional. This function is used to upgrade a previous version of a symbol's configuration.</td>
+        <td>Function</td>
+        <td>Optional. Returns true if the saved configuration should be merged into the default configuration. This function is used to upgrade a previous version of a symbol's configuration.</td>
     </tr>
      <tr>
         <td><code>templateUrl</code></td>
-        <td>String. Path to the presentation HTML file</td>
-        <td>Optional. If omitted, it looks in the current directory for a file named <code>sym-<typeName>- template.html</code></td>
+        <td>String</td>
+        <td>Optional. Path to the presentation HTML file. If omitted, it looks in the current directory for a file named <code>sym-&lt;typeName&gt;-template.html</code></td>
     </tr>
      <tr>
         <td><code>configTemplateUrl</code></td>
-        <td>String. Path to the configuration HTML file</td>
-        <td>Optional. If omitted, it looks in the current directory for a file named <code>sym-<typeName>- config.html</code></td>
+        <td>String</td>
+        <td>Optional. Path to the configuration HTML file. If omitted, it looks in the current directory for a file named <code>sym-&lt;typeName&gt;-config.html</code></td>
     </tr>
      <tr>
         <td><code>configTitle</code></td>
-        <td>String. Title for configuration</td>
-        <td>Optional. Used in the context menu when right-clicking the symbol and in the title of the configuration pane</td>
+        <td>String</td>
+        <td>Optional. Title for configuration. Used in the context menu when right-clicking the symbol and in the title of the configuration pane</td>
     </tr>
      <tr>
         <td><code>configOptions</code></td>
-        <td>Function. Controls what configuration options are available for this symbol. It takes in the symbol and returns an array of objects controlling configuration.</td>
-        <td><p>Optional. The objects returned can contain:</p>
+        <td>Function</td>
+        <td><p>Optional. Controls what configuration options are available for this symbol. It takes in the symbol and returns an array of objects controlling configuration. The objects returned can contain:</p>
         <ul>
-            <li><b>action</b>: Callback function to execute immediately.</li>
-            <li><b>title</b>: Text that appears in the context menu when you right-click</li>
-            <li><b>enabled</b>: Boolean when the menu item should be enabled.</li>
+            <li><code>action</code>: Callback function to execute immediately.</li>
+            <li><code>title</code>: Text that appears in the context menu when you right-click</li>
+            <li><code>enabled</code>: Boolean when the menu item should be enabled.</li>
         </ul>    
 </td>
     </tr>
      <tr>
         <td><code>configure</code></td>
-        <td>Object. Collection of key/ value pairs to be used on the configuration pane</td>
-        <td>Optional. This is mainly useful for holding static based configuration options, such as localization and for callbacks that you execute from the configuration pane markup referenced in <code>configTemplateUrl</code>.</td>
+        <td>Object</td>
+        <td>Optional. Collection of key/ value pairs to be used on the configuration pane. This is mainly useful for holding static based configuration options, such as localization and for callbacks that you execute from the configuration pane markup referenced in <code>configTemplateUrl</code>.</td>
     </tr>
      <tr>
         <td><code>configInit</code></td>
-        <td>Function. Called when the configuration pane of a symbol is activated</td>
-        <td>Optional</td>
+        <td>Function</td>
+        <td>Optional. Called when the configuration pane of a symbol is activated.</td>
     </tr>
      <tr>
         <td><code>StateVariables</code></td>
-        <td>Array of Strings. Properties that returns multistate information if configured.</td>
-        <td>Optional. Setting this variable allows you to apply a multi-state to a symbol. The variable listed is added to the symbol's scope and available for data binding in HTML.</td>
+        <td>Array of Strings</td>
+        <td>Optional. Properties that returns multistate information if configured. Setting this variable allows you to apply a multi-state to a symbol. The variable listed is added to the symbol's scope and available for data binding in HTML.</td>
     </tr>
      <tr>
         <td><code>resizerMode</code></td>
-        <td>String. The type of resizes the symbol should support</td>
-        <td><p>Optional. String used for determining how a symbols should resize. Options include:</p>
+        <td>String</td>
+        <td><p>Optional. The type of resizes the symbol should support. String used for determining how a symbols should resize. Options include:</p>
         <ul>
-            <li><b>''</b>: Empty string. This allows a symbol to be resized in any direction. (Default)</li>
-            <li><b>AutoWidth</b>: This allows a symbol's height to be resized while fitting the width. Used on text-based symbols.</li>
-            <li><b>RetainAspectRatio</b>: This forces a symbol to be resized with the height and width staying proportional.</li>
+            <li><code>''</code>: Empty string. This allows a symbol to be resized in any direction. (Default)</li>
+            <li><code>AutoWidth</code>: This allows a symbol's height to be resized while fitting the width. Used on text-based symbols.</li>
+            <li><code>RetainAspectRatio</code>: This forces a symbol to be resized with the height and width staying proportional.</li>
         </ul>
 </td>
     </tr>
      <tr>
         <td><code>inject</code></td>
-        <td>Array of Strings. A list of services that should be dependency injected into the init function</td>
-        <td>Optional. Default is empty array</td>
+        <td>Array of Strings</td>
+        <td>Optional. A list of services that should be dependency injected into the init function. Default is empty array</td>
     </tr>
      <tr>
         <td><code>visObjectType</code></td>
-        <td>Function. Object holding symbol specific functionality</td>
-        <td>Required. Function that was extended from <code>deriveVisualizationFromBase</code></td>
+        <td>Function</td>
+        <td>Required. Object holding symbol specific functionality. Function that was extended from <code>deriveVisualizationFromBase</code></td>
     </tr>
      <tr>
         <td><code>noExpandSelector</code></td>
-        <td>String. CSS class name that determines if a popup trend does not show</td>
-        <td>Optional. Can be set to a CSS class of your choosing. By default, double-clicking on a symbol opens a popup trend. Adding this CSS class to a DOM element (or one of its parents) will prevent a popup trend from opening when you double-click on it.</td>
+        <td>String</td>
+        <td>Optional. CSS class name that determines if a popup trend does not show. Can be set to a CSS class of your choosing. By default, double-clicking on a symbol opens a popup trend. Adding this CSS class to a DOM element (or one of its parents) will prevent a popup trend from opening when you double-click on it.</td>
     </tr>
      <tr>
         <td><code>supportsCollections</code></td>
-        <td>Boolean. Indicates whether the symbol can be included as part of collection symbols</td>
-        <td>Optional. Default is false. In order for the symbol to be driven by the collection data sources, the symbol must use one of the built-in data shapes. See <a hfref="#9">Data shapes</a>.
+        <td>Boolean</td>
+        <td>Optional. Indicates whether the symbol can be included as part of collection symbols. Default is false. In order for the symbol to be driven by the collection data sources, the symbol must use one of the built-in data shapes. See <a href="#9">Data shapes</a>.
 
 </td>
     </tr>
      <tr>
         <td><code>supportsDynamicSearchCriteria</code></td>
-        <td>Boolean. True if the symbol supports dynamic search criteria for assets</td>
-        <td>Optional. Default is false. Tables and Asset Comparison Tables allow you to determine the displays assets by providing search criteria. This flag enables this functionality.</td>
+        <td>Boolean</td>
+        <td>Optional. True if the symbol supports dynamic search criteria for assets. Default is false. Tables and Asset Comparison Tables allow you to determine the displays assets by providing search criteria. This flag enables this functionality.</td>
     </tr>
 </table>
 
 
-Use the `getDefaultConfig` function to specify the collection of parameters that you should serialize to the backend database. These are the parameters that your symbol needs to render properly. The resulting object returned by `getDefaultConfig` is placed on the symbol's scope property as config, i.e., `scope.config`. Please note, by convention, all parameters should start with an upper-case letter.
+Use the `getDefaultConfig` function to specify the collection of parameters that you should serialize to the backend database. These are the parameters that your symbol needs to render properly. The resulting object returned by `getDefaultConfig` is placed on the symbol's scope property as config, for example, `scope.config`. Please note, by convention, all parameters should start with an upper-case letter.
 
-The main parameter from getDefaultConfig that PI Vision system uses is DataShape. This parameter tells the application server the information that this symbol needs to represent the data. See [Data shapes](#9).
+The main parameter from getDefaultConfig that PI Vision system uses is `DataShape`. This parameter tells the application server the information that this symbol needs to represent the data. See [Data shapes](#9).
 
-The datasourceBehavior property is determined by the following object, found in `\\Scripts\\app\\common\\PIVisualization.enumerations.js`:
+The datasourceBehavior property is determined by the following object, found in `\Scripts\app\common\PIVisualization.enumerations.js`:
 
 ```javascript
 // Determines if a symbol can have 0, 1, or n number of datasources added to it.
@@ -292,9 +291,9 @@ Enums.DatasourceBehaviors = Object.freeze({
 });
 ```
 
-Use the `datasourceBehavior` property to determine the types of data sources that you can use from the **PI Vision** search pane. Symbols that have this property set to `None` are considered static symbols and are not added to the symbol selector. Symbols that have this property set to `Single` allow you to drag and drop a single tag or attribute on the display to create that symbol. Symbols that have this property set to `Multiple` allow you to drag and drop multiple tags, attributes, or elements on the display to create that symbol.
+Use the `datasourceBehavior` property to determine the types of data sources that you can use from the PI Vision search pane. Symbols that have this property set to `None` are considered static symbols and are not added to the symbol selector. Symbols that have this property set to `Single` allow you to drag and drop a single tag or attribute on the display to create that symbol. Symbols that have this property set to `Multiple` allow you to drag and drop multiple tags, attributes, or elements on the display to create that symbol.
 
-Below is a sample definition object from the native **PI Vision** Value symbol:
+Below is a sample definition object from the native PI Vision Value symbol:
 
 ```javascript
 var def = {
@@ -359,7 +358,7 @@ TextResize: 'TextResize',
 
 ### Initialization
 
-The final part of the symbol implementation is the init function. The init function is defined on the prototype of the symbol container object created in `deriveVisualizationFromBase`.
+The final part of the symbol implementation is the `init` function. The `init` function is defined on the prototype of the symbol container object created in `deriveVisualizationFromBase`.
 
 ```javascript
 symbolVis.prototype.init = function (scope, element) {
@@ -369,10 +368,10 @@ The `init` function takes two parameters (`scope` and `element`) and optionally 
 
 Callback functions set inside the init function:
 
-* `this.onDataUpdate`: This function is called by the **PI Vision** infrastructure any time a data update occurs. It takes in a data object that contains the `Value`, `Time`, `Path`, `Label`, `Units`, `Description`, etc. The properties on the object returned are determined by the `DataShape` specified in the `getDefaultConfig` function.
-* `this.onResize`: This function is called by the **PI Vision** infrastructure anytime the symbol is resized. The resize function is passed the new width and height of the symbol.
+* `this.onDataUpdate`: This function is called by the PI Vision infrastructure any time a data update occurs. It takes in a data object that contains the `Value`, `Time`, `Path`, `Label`, `Units`, `Description`, etc. The properties on the object returned are determined by the `DataShape` specified in the `getDefaultConfig` function.
+* `this.onResize`: This function is called by the PI Vision infrastructure anytime the symbol is resized. The resize function is passed the new width and height of the symbol.
 * `this.onConfigChange`: This function is called by the PI Vision infrastructure anytime the configuration of a symbol is updated. It takes in the new configuration and the old configuration.
-* `this.onDestroy`: This function is called by the **PI Vision** infrastructure when the symbol is destroyed.
+* `this.onDestroy`: This function is called by the PI Vision infrastructure when the symbol is destroyed.
 
 Here is an example `init` function definition:
 
@@ -449,13 +448,13 @@ function resize(width, height) {
 
 ### Data shapes
 
-The `getDefaultConfig` function in the symbol definition can include a `DataShape` field to define how **PI Vision** should retrieve data.
+The `getDefaultConfig` function in the symbol definition can include a `DataShape` field to define how PI Vision should retrieve data.
 
 The returned data can contain metadata for infrequently changed values. This includes the `Label`, `Units`, and `Path` values.
 
 #### Value
 
-A Value is a single data source shape that is used by the **PI Vision** Value symbol. It is a single value at a specific time.
+A Value is a single data source shape that is used by the PI Vision Value symbol. It is a single value at a specific time.
 
 ##### Example Data returned to `onDataUpdate` when `DataShape` equals `Value` and `datasourceBehavior` equals `DatasourceBehaviors.Single`
 
@@ -467,13 +466,13 @@ A Value is a single data source shape that is used by the **PI Vision** Value sy
 
 ![With metadata](./images/image003.png)
 
-##### Example data returned to onDataUpdate when `DataShape` equals `Value` and `datasourceBehavior` equals `DatasourceBehaviors.Multiple`
+##### Example data returned to `onDataUpdate` when `DataShape` equals `Value` and `datasourceBehavior` equals `DatasourceBehaviors.Multiple`
 
 The Value data shape doesn't support multiple data sources. These settings will produce the same results as with `CS.Extensibility.Enums.DatasourceBehaviors.Single`. Only the first data stream dropped on the symbol is returned in the data object.
 
 #### Gauge
 
-A Gauge is a single data source shape that is used by the **PI Vision** Gauge and Bar symbols. This includes the ratio of a value between a minimum and a maximum. The following configuration options are set as fields on the symbol's config object and are used to show a gauge symbol:
+A Gauge is a single data source shape that is used by the PI Vision Gauge and Bar symbols. This includes the ratio of a value between a minimum and a maximum. The following configuration options are set as fields on the symbol's config object and are used to show a gauge symbol:
 
 * `Start`: Numeric value for zero on the scale. Defaults to 0 if setting is not present. No default.
 * `ValueScale`: Return ValueScaleLabels and ValueScalePositions in the data update. Default = true
@@ -499,9 +498,9 @@ The Gauge data shape only supports a single data source. These settings will pro
 
 #### Trend
 
-A Trend is a multiple data source shape that is used by the **PI Vision** Trend symbol. These options are available on the configuration object:
+A Trend is a multiple data source shape that is used by the PI Vision Trend symbol. These options are available on the configuration object:
 
-* `Markers`: If true, request recorded values instead of plot values if the time range is short enough. Please note, markers are only shown if there is enough width to show them and the time range returns markers.
+* `Markers`: If true, request recorded values instead of plot values if the time range is short enough. Note that markers are only shown if there is enough width to show them and the time range returns markers.
 * `MultipleScales`: If true, each trace is scaled independently; otherwise, all traces share one scale.
 * `TimeScaleType`: Controls labels on the time scale. 0 = Start, End and Duration; 1 = Timestamps; 2 = Relative to end; 3 = Relative to start
 * `ValueScaleSetting`: See the Gauge symbol configuration object above. Defaults are 0, Autorange.
@@ -526,7 +525,7 @@ This configuration results in the same data object as with `CS.Extensibility.Enu
 
 #### Table
 
-A Table is a multiple data-source shape that is used by the **PI Vision** Table symbol. When you use the Tables shape, you can specify the following options on the configuration object:
+A Table is a multiple data-source shape that is used by the PI Vision Table symbol. When you use the Tables shape, you can specify the following options on the configuration object:
 
 * `Columns`: Array of strings. Can include `Value`, `Trend`, `Average`, `Minimum`, `Maximum`, `StdDev`, `Range`, or `pStdDev`
 * `SortColumn`: Column on which to sort results
@@ -583,7 +582,7 @@ If this setting is not present or not null, numbers and dates are formatted usin
 
 If set to `Database`, the `DisplayDigits` setting in the PI Data Archive point definition is used to control precision. If you set it to `Scientific`, numbers are shown in exponential notation.
 
-You can use any other standard or custom string supported by Microsoft C\# to control precision and leading or trailing zeroes, with special formats for currency, percentages and negative numbers. See Microsoft MSDN article [C# Numeric Format Strings](https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings?redirectedfrom=MSDN).
+You can use any other standard or custom string supported by Microsoft C# to control precision and leading or trailing zeroes, with special formats for currency, percentages and negative numbers. See Microsoft MSDN article [C# Numeric Format Strings](https://docs.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings?redirectedfrom=MSDN).
 
 If you set `FormatType` to `null`, numbers are returned in invariant format without the thousands separator and with the period as the decimal separator. Dates are returned in the ISO 8601 format `YYYY-MM-DDThh:mm:ss.fffZ`.
 
@@ -592,7 +591,7 @@ If you set `FormatType` to `null`, numbers are returned in invariant format with
 <a id="10"></a>
 ### Data updates
 
-Based on the symbol's configuration and its datasources, **PI Vision** requests data and calls the `dataUpdate` method that is defined when the symbol is initialized. The object passed to this function depends on the symbol's `DataShape`.
+Based on the symbol's configuration and its datasources, PI Vision requests data and calls the `dataUpdate` method that is defined when the symbol is initialized. The object passed to this function depends on the symbol's `DataShape`.
 
 #### Metadata
 
@@ -606,7 +605,7 @@ Some properties of a data item change infrequently, such as the data item name o
 
 #### Error fields
 
-If data cannot be retrieved for a data item, the IsGood field is added to the response, is set to false, and the ErrorCode and ErrorDescription fields include specifics about the error.
+If data cannot be retrieved for a data item, the `IsGood` field is added to the response, is set to false, and the `ErrorCode` and `ErrorDescription` fields include specifics about the error.
 
 <table>
     <tr>
@@ -646,7 +645,8 @@ If data cannot be retrieved for a data item, the IsGood field is added to the re
                 <li><code>ValueScalePositions</code>: Array, position of labels between Min and Max, 0 to 100</li> 
                 <li><code>Traces</code>: Array of objects with these fields:</li>
                 <ul>
-                    <li>Metadata and error fields Value</li>
+                    <li>Metadata and error fields</li>
+                    <li>Value</li>
                     <li><code>LineSegments</code>: Array of trace points in 100x100 coordinate space, origin lower left</li>
                     <li><code>ErrorMarkers</code>: Coordinates of data errors or where traces go out of bounds</li> 
                     <li><code>Markers</code>: True if points are for recorded values</li>
@@ -675,7 +675,8 @@ If data cannot be retrieved for a data item, the IsGood field is added to the re
         <ul>
             <li><code>Data</code>: Array containing data objects for each individual data source associated with the symbol. Each item can contain the fields:</li>
             <ul>
-                <li>Metadata, error fields Values array</li>
+                <li>Metadata, error fields</li>
+                <li>Value array</li>
                 <ul>
                     <li><code>Time</code></li>
                     <li><code>Value</code></li>
@@ -708,14 +709,14 @@ Here is example HTML code for a symbol:
 
 The example symbol is made up of two `div` elements: the outer `div` for the border and the inner `div` to show the data. The majority of the work is handled by AngularJS in the inner `div`. This `div` has an ng-style attribute, which is AngularJS's way of setting styles.
 
-In the ng-style, **PI Vision** sets the background color to be whatever is configured for the symbol's fill. This was originally defined in the `getDefaultConfig` function. The height and width are also set based on variables defined on the symbol's scope in the `init` or the `dataUpdate` functions.
+In the ng-style, PI Vision sets the background color to be whatever is configured for the symbol's fill. This was originally defined in the `getDefaultConfig` function. The height and width are also set based on variables defined on the symbol's scope in the `init` or the `dataUpdate` functions.
 
 [Back to top](#top)
 
 <a id="12"></a>
 ### Custom styles
 
-You can add custom CSS files to provide styling for symbols. Place CSS files in the same directory as the symbol, `\\Scripts\\app\\editor\\symbols\\ext\\`. The files should follow the naming convention of `sym-\<YourSymbolName\>.css`. Note that custom CSS files placed in this directory are subject to overrides by the application styles. If a custom style selector has the same target and specificity as another style in the application, the custom style may not be applied. You should not use CSS styles added to this directory for application theming.
+You can add custom CSS files to provide styling for symbols. Place CSS files in the same directory as the symbol, `\Scripts\app\editor\symbols\ext\`. The files should follow the naming convention of `sym-<YourSymbolName>.css`. Note that custom CSS files placed in this directory are subject to overrides by the application styles. If a custom style selector has the same target and specificity as another style in the application, the custom style may not be applied. You should not use CSS styles added to this directory for application theming.
 
 When writing styles for custom symbols, you should choose unique selectors; however, avoid using `id` attributes as they are not meant to be duplicated.
 
@@ -816,14 +817,14 @@ The third option defines an immediate action that invokes a function defined on 
 Symbol formats
 --------------
 
-This section describes standardized format names, conventions, and their usage for **PI Vision** symbols. The purpose of a standardized symbol format is to:
+This section describes standardized format names, conventions, and their usage for PI Vision symbols. The purpose of a standardized symbol format is to:
 
 * Enable a symbol to share formats with other symbols 
     * For example, when a symbol type is switched to another symbol type or a format paint brush feature is applied to the symbol, etc.
 * Support forward compatibility 
     * For example, the ability to open/edit displays from prior PI Vision versions with formats that they were saved with
 
-**PI Vision** 2019 supports switching a symbol from one type to another supported type (for example, Value to LinearGauge). Standard format options and options common to a symbol family are preserved when changing types. The addition of a new object called `FormatOptions` to the symbol configuration object allows you to define anything format related that you want to participate in any format copying that **PI Vision** has now or will provide in the future.
+PI Vision 2019 supports switching a symbol from one type to another supported type (for example, Value to LinearGauge). Standard format options and options common to a symbol family are preserved when changing types. The addition of a new object called `FormatOptions` to the symbol configuration object allows you to define anything format related that you want to participate in any format copying that PI Vision has now or will provide in the future.
 
 [Back to top](#top)
 
@@ -906,7 +907,7 @@ The list below provides the standard format names used to share formats between 
 
 To make it easy to share formats between symbols, a new object called `FormatOptions` (which is a collection of formats) is created as one of the collection properties returned by `getDefaultConfig`. The `FormatOptions` object can contain as properties either standard format names or custom names. Any format that is part of this object is automatically shared when a symbol is switched to another allowed type or for future format sharing features. 
 
-Please note, starting with **PI Coresight** 2016 R2, all newly created symbols should use the `FormatOptions` object exclusively for storing format properties; maps are only used for existing symbols with already defined format properties.
+**Note:** Starting with PI Coresight 2016 R2, all newly created symbols should use the `FormatOptions` object exclusively for storing format properties; maps are only used for existing symbols with already defined format properties.
 
 **Example code**:
 
@@ -928,7 +929,7 @@ var def = {
 
 #### Forward compatibility 
 
-Symbol formats of displays created or saved in versions prior to **PI Coresight** 2016 R2 use different format names for common formats that need to be shared between symbols. For the sake of forward compatibility, these names are kept intact and a `formatMap` object is used to map them to common format names or symbol specific names that are shared between particular symbols. This `formatMap` object is defined as a property of the symbol `definition` object.
+Symbol formats of displays created or saved in versions prior to PI Coresight 2016 R2 use different format names for common formats that need to be shared between symbols. For the sake of forward compatibility, these names are kept intact and a `formatMap` object is used to map them to common format names or symbol specific names that are shared between particular symbols. This `formatMap` object is defined as a property of the symbol `definition` object.
 
 **Example code**:
 
@@ -973,20 +974,21 @@ var def = {
 <a id="18"></a>
 ### Symbol type switching 
 
-Once created, you can switch **PI Vision** symbols into other supported types. For example, you can switch a Trend symbol into a Table symbol type and vice versa and you can switch a Value symbol into any Gauge symbol type and vice versa. When a symbol switch happens, all matching formats from the defined `formatMap` and all formats in the `FormatOptions` object are copied from the source type to the destination type. For example, when a Value symbol is switched to a Gauge symbol type, the `ValueColor` format is copied to the Gauge symbol. The Value symbol type has no defined `FormatOptions` object.
+Once created, you can switch PI Vision symbols into other supported types. For example, you can switch a Trend symbol into a Table symbol type and vice versa and you can switch a Value symbol into any Gauge symbol type and vice versa. When a symbol switch happens, all matching formats from the defined `formatMap` and all formats in the `FormatOptions` object are copied from the source type to the destination type. For example, when a Value symbol is switched to a Gauge symbol type, the `ValueColor` format is copied to the Gauge symbol. The Value symbol type has no defined `FormatOptions` object.
 
 #### `symbolFamily` property
 
-A symbol definition can define a property called `symbolFamily`. If the source and destination types of switched symbols belong to the same `symbolFamily` (for example, VerticalGauge and HorizontalGauge both belong to the same `symbolFamily` called "gauge"), then all formats defined in the `formatMap` along with all formats in the `FormatOptions` from the source type are copied to the destination type.
+A symbol definition can define a property called `symbolFamily`. If the source and destination types of switched symbols belong to the same `symbolFamily` (for example, `VerticalGauge` and `HorizontalGauge` both belong to the same `symbolFamily` called "gauge"), then all formats defined in the `formatMap` along with all formats in the `FormatOptions` from the source type are copied to the destination type.
 
 [Back to top](#top)
 
+**FEEDBACK: Seems like there is a missing section from the PDF? Upgrading existing symbols**
 
 <a id="19"></a>
 Tool pane extension
 ===================
 
-You can extend your **PI Vision** installation with custom tool panes.
+You can extend your PI Vision installation with custom tool panes.
 
 [Back to top](#top)
 
@@ -994,7 +996,7 @@ You can extend your **PI Vision** installation with custom tool panes.
 Layers of a PI Vision tool pane
 -------------------------------
 
-**PI Vision** tool panes are broken up into two major layers:
+PI Vision tool panes are broken up into two major layers:
 
 * **Implementation**: The implementation layer is a JavaScript file that handles all of the implementation logic of the symbol.
 * **Presentation**: The presentation layer is the HTML responsible for the pane's appearance. Configuration persistence is not yet implemented.
@@ -1007,7 +1009,7 @@ Layers of a PI Vision tool pane
 Save files for a tool pane in the same directory, the `ext` folder, under:
 
 ```javascript
-INSTALLATION\_FOLDER\\Scripts\\app\\editor\\tools\\ext
+INSTALLATION\_FOLDER\Scripts\app\editor\tools\ext
 ```
 
 If the `ext` folder is not present, create it.
@@ -1042,39 +1044,38 @@ The following options are available in the tool definition:
     </tr>
     <tr>
         <td><code>typeName</code></td>
-        <td>String. Internal unique name of the tool</td>
-        <td>Required</td>
+        <td>String</td>
+        <td>Required. Internal unique name of the tool.</td>
     </tr>
     <tr>
         <td><code>displayName</code></td>
-        <td>String. Name that will be shown in the tool tab's tooltip</td>
-        <td>Required</td>
+        <td>String</td>
+        <td>Required. Name that will be shown in the tool tab's tooltip.</td>
     </tr>
     <tr>
         <td><code>iconUrl</code></td>
-        <td>String. Path to the icon to be used on the tool tab</td>
-        <td>Required</td>
+        <td>String</td>
+        <td>Required. Path to the icon to be used on the tool tab.</td>
     </tr>
     <tr>
         <td><code>templateUrl</code></td>
-        <td>String. Path to the presentation HTML file</td>
-        <td>Optional. If omitted it will look in the current directory for <code>tool-
-<typeName>-template.html</code>
+        <td>String</td>
+        <td>Optional. Path to the presentation HTML file. If omitted it will look in the current directory for <code>tool-&lt;typeName&gt;-template.html</code>.
 </td>
     </tr>
     <tr>
         <td><code>inject</code></td>
-        <td>Array of Strings. A list of services that should be dependency injected into the init function</td>
-        <td>Optional. Default is empty array</td>
+        <td>Array of Strings</td>
+        <td>Optional. A list of services that should be dependency injected into the init function. Default is empty array.</td>
     </tr>
     <tr>
         <td><code>init</code></td>
-        <td>Function. Function that will be called when the symbol is being added to a display</td>
-        <td>Required. Takes in the scope of the current symbol and the element </td>
+        <td>Function</td>
+        <td>Required. Function that will be called when the symbol is being added to a display. Takes in the scope of the current symbol and the element.</td>
     </tr>
 </table>
 
-Tools are singular instances appearing in the left pane of the **PI Vision** application. They are useful for functionality that you want to have loaded at all times as a user switches displays.
+Tools are singular instances appearing in the left pane of the PI Vision application. They are useful for functionality that you want to have loaded at all times as a user switches displays.
 
 They will share the same space as the built in Search and Events tool panes.
 
@@ -1083,7 +1084,7 @@ They will share the same space as the built in Search and Events tool panes.
 <a id="23"></a>
 ### Badging
 
-All tool extensions automatically have a property called `Badge` set on their scope. You can use this to display text in a badge on the tool tab's icon. This is typically used to show a count of new items available for viewing on an inactive tab. Click the tab to erase the badge until the next time it is set. To set the badge, call the raise method on the `Badge` object with the text you want to display. Badge is only capable of showing 1-3 characters due to space constraints.
+All tool extensions automatically have a property called `Badge` set on their scope. You can use this to display text in a badge on the tool tab's icon. This is typically used to show a count of new items available for viewing on an inactive tab. Click the tab to erase the badge until the next time it is set. To set the badge, call the raise method on the `Badge` object with the text you want to display. `Badge` is only capable of showing 1-3 characters due to space constraints.
 
 **Example code**:
 
