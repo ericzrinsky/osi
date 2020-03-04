@@ -7,12 +7,16 @@ This document creates a simple PI Vision extensibility symbol. The symbol accept
 
 Create the <code>ext</code> folder under:
 
-<pre>PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext_</pre>
+```
+PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext_
+```
 
 ### Icons Folder
 
 Create the <code>icons</code> folder under:
-<pre>PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext\icons_</pre>
+```
+PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext\icons_
+```
 
 ## Create the symbol files
 ### Presentation layer
@@ -23,13 +27,13 @@ Create the presentation HTML file for the symbol in the ext folder and name it s
 
 Add the following content to the file:
 
-<pre>
+```html
 <div class="SymbolPrimerLayout" ng-style="{opacity: config.Opacity, background: config.BackgroundColor, color: MultistateColor || config.TextColor}">
     <div ng-show="config.ShowLabel">{{label}}</div>
 	<div>{{value}} <span ng-show="config.ShowUnits"> {{Units}}</span> </div>     
 	<div ng-show="config.ShowTime">{{time}}</div>
 </div>
-</pre>
+```
 
 ### Configuration layer
 
@@ -39,7 +43,7 @@ Create the configuration HTML file for the symbol in the _ext_ folder and name i
 
 Add the following content to the file:
 
-<pre>
+```html
 <div class="ConfigLayout">
     <label class="ConfigCheckBox">
         <input type="checkbox" name="ShowLabel" ng-model="config.ShowLabel">Show Label<br />
@@ -57,7 +61,7 @@ Add the following content to the file:
         <input class="ConfigTextBox" type="text" name="MaxValue" ng-model="config.MaxValue">Maximum Value<br />
 	</label>
 </div>
-</pre>
+```
 
 ## Custom Style Sheet
 
@@ -67,7 +71,7 @@ Create the CSS file for the symbol in the _ext_ folder and name it sym-_symbolPr
 
 Add the following content to the file:
 
-<pre>
+```CSS
 .ConfigLayout {
     padding: 15px;
     font-size: 14px
@@ -91,13 +95,15 @@ Add the following content to the file:
 .ConfigTextBox {
     width: 50px;
 }
-</pre>
+```
 
 ### Symbol Icon
 
 You can provide an icon to be added to the PI Vision symbol selector which appears in the Assets pane. A default symbol icon is used if this is not available. Use your preferred image editor to create a 512 x 512 pixel image with a transparent background. Save the image as sym-_symbolPrimer_.png. Copy the saved image into the
 
+```
 PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext\Icons_ folder.
+```
 
 ### Implementation Layer
 
@@ -107,10 +113,11 @@ Create a file to contain the symbol&#39;s implementation in the _ext_ folder and
 
 Add the following to the file, note that the file contents will be explained below:
 
-<pre>
- (function (PV) {
-    'use strict'; 
-    function symbolPrimer() { }
+```javascript
+(function(PV) {
+    'use strict';
+
+    function symbolPrimer() {}
     PV.deriveVisualizationFromBase(symbolPrimer);
 
     var definition = {
@@ -120,9 +127,9 @@ Add the following to the file, note that the file contents will be explained bel
         supportsCollections: true,
         visObjectType: symbolPrimer,
         getDefaultConfig: function() {
-    	    return {
-    	        DataShape: 'Value',
-    	        Height: 70,
+            return {
+                DataShape: 'Value',
+                Height: 70,
                 Width: 250,
                 Opacity: "1.0",
                 BackgroundColor: 'grey',
@@ -135,54 +142,54 @@ Add the following to the file, note that the file contents will be explained bel
             };
         },
         configTitle: 'Format Symbol Primer',
-        StateVariables: [ 'MultistateColor' ]
+        StateVariables: ['MultistateColor']
     };
-    
-    symbolPrimer.prototype.init = function (scope, elem) {
+
+    symbolPrimer.prototype.init = function(scope, elem) {
         this.onDataUpdate = dataUpdate;
         this.onResize = symbolResize;
         this.onConfigChange = configChange;
 
 
         function dataUpdate(data) {
-            if(data) {
+            if (data) {
                 scope.value = data.Value;
                 scope.config.Opacity = (data.Value - scope.config.MinValue) / (scope.config.MaxValue - scope.config.MinValue);
                 scope.time = data.Time;
-                if(data.Label) {
+                if (data.Label) {
                     scope.label = data.Label;
                 }
-                if(data.Units) {
+                if (data.Units) {
                     scope.Units = data.Units;
                 }
             }
         }
-    
+
         function symbolResize(width, height) {
             var SymbolContainer = elem.find('.SymbolPrimerLayout')[0];
-            if(SymbolContainer) {
-                SymbolContainer.style.width =  width + 'px';
-                SymbolContainer.style.height =  height + 'px';
+            if (SymbolContainer) {
+                SymbolContainer.style.width = width + 'px';
+                SymbolContainer.style.height = height + 'px';
             }
         }
-    
+
         function configChange(newConfig, oldConfig) {
             if (newConfig && oldConfig && !angular.equals(newConfig, oldConfig)) {
-                if(!isNumeric(newConfig.MinValue) || !isNumeric(newConfig.MaxValue) || parseFloat(newConfig.MinValue) >= parseFloat(newConfig.MaxValue)) {
+                if (!isNumeric(newConfig.MinValue) || !isNumeric(newConfig.MaxValue) || parseFloat(newConfig.MinValue) >= parseFloat(newConfig.MaxValue)) {
                     newConfig.MinValue = oldConfig.MinValue;
                     newConfig.MaxValue = oldConfig.MaxValue;
-                } 
+                }
             }
         }
-    
+
         function isNumeric(n) {
-            return n === '' || n === '-'  || !isNaN(parseFloat(n)) && isFinite(n);
-          }
+            return n === '' || n === '-' || !isNaN(parseFloat(n)) && isFinite(n);
+        }
     };
-    
-    PV.symbolCatalog.register(definition); 
+
+    PV.symbolCatalog.register(definition);
 })(window.PIVisualization);
-</pre>
+```
 
 ### A look at the code
 
@@ -190,13 +197,14 @@ Add the following to the file, note that the file contents will be explained bel
 
 The Implementation layer is wrapped in an immediately invoked function expression (IIFE). This function excepts a global PI Visualization object, which is passed in as a parameter.
 
-<pre>
- (function (PV) {
-    'use strict'; 
-    function symbolPrimer() { }
+```javascript
+(function(PV) {
+    'use strict';
+
+    function symbolPrimer() {}
     PV.deriveVisualizationFromBase(symbolPrimer);
-})(window.PIVisualization); 
-</pre>
+})(window.PIVisualization);
+```
 
 #### Definition object
 
@@ -219,31 +227,31 @@ The definition property, shown below, is a JSON object (key-value pairs) that se
 Indicates whether the symbol can be included as part of a collection symbol.</li>
 <li><code>visObjectType</code>: The name of the function that was extended from PV.deriveVisualizationFromBase.</li>
 </ul>
-<pre>
-    var definition = {
-        typeName: 'symbolPrimer',
-        datasourceBehavior: PV.Extensibility.Enums.DatasourceBehaviors.Single,
-        supportsCollections: true,
-        visObjectType: symbolPrimer,
-        getDefaultConfig: function() {
-    	    return {
-    	        DataShape: 'Value',
-    	        Height: 70,
-                Width: 250,
-                Opacity: "1.0",
-                BackgroundColor: 'grey',
-                TextColor: 'white',
-                ShowLabel: true,
-                ShowTime: false,
-                ShowUnits: false,
-                MinValue: 0,
-                MaxValue: 100
-            };
-        },
-        configTitle: 'Format Symbol Primer',
-        StateVariables: [ 'MultistateColor']
-    };
-</pre>
+```javascript
+var definition = {
+    typeName: 'symbolPrimer',
+    datasourceBehavior: PV.Extensibility.Enums.DatasourceBehaviors.Single,
+    supportsCollections: true,
+    visObjectType: symbolPrimer,
+    getDefaultConfig: function() {
+        return {
+            DataShape: 'Value',
+            Height: 70,
+            Width: 250,
+            Opacity: "1.0",
+            BackgroundColor: 'grey',
+            TextColor: 'white',
+            ShowLabel: true,
+            ShowTime: false,
+            ShowUnits: false,
+            MinValue: 0,
+            MaxValue: 100
+        };
+    },
+    configTitle: 'Format Symbol Primer',
+    StateVariables: ['MultistateColor']
+};
+```
 
 #### Initialization function
 
@@ -252,21 +260,21 @@ The Initialization function is used to set callback functions for the symbol whi
 	<li><code>scope</code>: Provides access to PI Vision variables available to the symbol.</li>
 	<li><code>codeelem</code>: Provides access to the HTML DOM element of the symbol&#39;s presentation layer. </li>
 </ul>
-<pre>
-    symbolPrimer.prototype.init = function (scope, elem) {
+```javascript
+symbolPrimer.prototype.init = function(scope, elem) {
 
-    };
-</pre>
+};
+```
 
 #### Callback functions
 
 The symbol defined in this document defines callback functions to handle data update, resize, and configuration change events.
 
-<pre>
-        this.onDataUpdate = dataUpdate;
-        this.onResize = symbolResize;
-        this.onConfigChange = configChange;
-</pre>
+```javascript
+this.onDataUpdate = dataUpdate;
+this.onResize = symbolResize;
+this.onConfigChange = configChange;
+```
 
 #### `onDataUpdate` callback
 
@@ -277,21 +285,21 @@ This function is called by the PI Vision infrastructure any time a data update o
 	<li>The primer symbol sets the opacity for the presentation layer based on the data value and the configured minimum/maximum. Note that the PI Web API can be used to obtain the min and max data item values.</li>
 </ul>
 
-<pre>
+```javascript
 function dataUpdate(data) {
-   if(data) {
-     scope.value = data.Value;
-     scope.config.Opacity = (data.Value - scope.config.MinValue) / (scope.config.MaxValue - scope.config.MinValue);
-     scope.time = data.Time;
-     if(data.Label) {
-        scope.label = data.Label;
-     }
-     if(data.Units) {
-        scope.Units = data.Units;
-     }
-   }
+    if (data) {
+        scope.value = data.Value;
+        scope.config.Opacity = (data.Value - scope.config.MinValue) / (scope.config.MaxValue - scope.config.MinValue);
+        scope.time = data.Time;
+        if (data.Label) {
+            scope.label = data.Label;
+        }
+        if (data.Units) {
+            scope.Units = data.Units;
+        }
+    }
 }
-</pre>
+```
 
 #### `onResize` callback
 
@@ -300,15 +308,15 @@ This function is called by the PI Vision infrastructure when the symbol is resiz
 <ul>
 	<li>The HTML DOM element, elem, passed into the Initialization function by PI Vision, for the symbol is used to find the symbol&#39;s container and then the container is resized.</li>
 </ul>
-<pre>
+```javascript
 function symbolResize(width, height) {
-   var SymbolContainer = elem.find('.SymbolPrimerLayout')[0];
-   if(SymbolContainer) {
-      SymbolContainer.style.width =  width + 'px';
-      SymbolContainer.style.height =  height + 'px';
-   }
+    var SymbolContainer = elem.find('.SymbolPrimerLayout')[0];
+    if (SymbolContainer) {
+        SymbolContainer.style.width = width + 'px';
+        SymbolContainer.style.height = height + 'px';
+    }
 }
-</pre>
+```
 
 #### `onConfigChange` callback
 
@@ -316,20 +324,20 @@ This function is called by the PI Vision infrastructure anytime the configuratio
 <ul>
 	<li>The primer symbol uses this callback to validate the minimum and maximum values provided by the user in the Configuration pane.</li>
 </ul>
-<pre>
+```javascript
 function configChange(newConfig, oldConfig) {
-   if (newConfig && oldConfig && !angular.equals(newConfig, oldConfig)) {
-      if(!isNumeric(newConfig.MinValue) || !isNumeric(newConfig.MaxValue) || parseFloat(newConfig.MinValue) >=   parseFloat(newConfig.MaxValue)) {
-                    newConfig.MinValue = oldConfig.MinValue;
-                    newConfig.MaxValue = oldConfig.MaxValue;
-      } 
-   }
+    if (newConfig && oldConfig && !angular.equals(newConfig, oldConfig)) {
+        if (!isNumeric(newConfig.MinValue) || !isNumeric(newConfig.MaxValue) || parseFloat(newConfig.MinValue) >= parseFloat(newConfig.MaxValue)) {
+            newConfig.MinValue = oldConfig.MinValue;
+            newConfig.MaxValue = oldConfig.MaxValue;
+        }
+    }
 }
 
 function isNumeric(n) {
-   return n === '' || n === '-'  || !isNaN(parseFloat(n)) && isFinite(n);
+    return n === '' || n === '-' || !isNaN(parseFloat(n)) && isFinite(n);
 }
-</pre>
+```
 
 ### The symbol in PI Vision
 
@@ -355,26 +363,28 @@ To make a HTTP request from a custom symbol, you will need to use an AngularJS $
 	<li>Inject a &#39;$http&#39; provider string into symbol definition</li>
 </ul>
 
-<pre>
-var definition = { 
-inject: ['$http'], 
+```javascript
+var definition = {
+    inject: ['$http'],
 };
-</pre>
+```
 <ul>
 	<li>Pass the $http provider as a parameter to the Initialization function</li>
 </ul>
-<pre>
+```
 symbolPrimer.prototype.init = function (scope, elem, $http) {
 
     };
-</pre>
+```
 
 <ul>
 	<li>Make a <code>GET HTTP</code> request for the list of all available asset servers and output results to the console.</li>
 </ul>
-<pre>
-symbolPrimer.prototype.init = function (scope, elem, $http) {
-       var baseUrl = PV.ClientSettings.PIWebAPIUrl;
-       $http.get(baseUrl + '/assetservers').then(function (response) { console.log(response); });
-    };
-</pre>
+```javascript
+symbolPrimer.prototype.init = function(scope, elem, $http) {
+    var baseUrl = PV.ClientSettings.PIWebAPIUrl;
+    $http.get(baseUrl + '/assetservers').then(function(response) {
+        console.log(response);
+    });
+};
+```
