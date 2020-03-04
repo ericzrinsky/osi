@@ -255,11 +255,12 @@ var definition = {
 
 #### Initialization function
 
-The Initialization function is used to set callback functions for the symbol which drive the symbol&#39;s behavior. The function accepts scope and element parameters.
+The Initialization function is used to set callback functions for the symbol which drive the symbol's behavior. The function accepts scope and element parameters.
 <ul>
 	<li><code>scope</code>: Provides access to PI Vision variables available to the symbol.</li>
-	<li><code>codeelem</code>: Provides access to the HTML DOM element of the symbol&#39;s presentation layer. </li>
+	<li><code>codeelem</code>: Provides access to the HTML DOM element of the symbol's presentation layer. </li>
 </ul>
+
 ```javascript
 symbolPrimer.prototype.init = function(scope, elem) {
 
