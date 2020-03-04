@@ -439,11 +439,11 @@ A Value is a single data source shape that is used by the PI Vision Value symbol
 
 **Without metadata**
 
-![Without metadata](./images/image002.png)
+![Without metadata](./images2/image002.png)
 
 **With metadata**
 
-![With metadata](./images/image003.png)
+![With metadata](./images2/image003.png)
 
 ##### Example data returned to `onDataUpdate` when `DataShape` equals `Value` and `datasourceBehavior` equals `DatasourceBehaviors.Multiple`
 
@@ -465,11 +465,11 @@ A Gauge is a single data source shape that is used by the PI Vision Gauge and Ba
 
 **Without metadata**
 
-![Without metadata](./images/image004.png)
+![Without metadata](./images2/image004.png)
 
 **With metadata**
 
-![With metadata](./images/image005.png)
+![With metadata](./images2/image005.png)
 
 ##### Example data returned to `onDataUpdate` when `DataShape` equals `Gauge` and `datasourceBehavior` equals `DatasourceBehaviors.Multiple`
 
@@ -490,17 +490,17 @@ You can set the `FormatType` independently for each trace by including them in a
 
 This configuration results in the same data object as with `CS.Extensibility.Enums.DatasourceBehaviors.Multiple`; however, the `Traces` array is limited to only one element.
 
-![Trend Single Behavior](./images/image006.png)
+![Trend Single Behavior](./images2/image006.png)
 
 ##### Example data returned to `onDataUpdate` when `DataShape` equals `Trend` and `datasourceBehavior` equals `DatasourceBehaviors.Multiple`
 
 **Without metadata**
 
-![Without metadata](./images/image007.png)
+![Without metadata](./images2/image007.png)
 
 **With metadata**
 
-![With metadata](./images/image008.png)
+![With metadata](./images2/image008.png)
 
 #### Table
 
@@ -514,17 +514,17 @@ A Table is a multiple data-source shape that is used by the PI Vision Table symb
 
 This configuration will result in the same data object as with `CS.Extensibility.Enums.DatasourceBehaviors.Multiple`; however, the `Rows` array is limited to only one element.
 
-![Table Single Behavior](./images/image009.png)
+![Table Single Behavior](./images2/image009.png)
 
 ##### Example data returned to `onDataUpdate` when `DataShap`e equals `Table` and `datasourceBehavior` equals `DatasourceBehaviors.Multiple`
 
 **Without metadata**
 
-![Without metadata](./images/image010.png)
+![Without metadata](./images2/image010.png)
 
 **With metadata**
 
-![With metadata](./images/image011.png)
+![With metadata](./images2/image011.png)
 
 #### TimeSeries
 
@@ -541,17 +541,17 @@ A multiple data source shape that returns raw data values. These options are ava
 
 This configuration results in the same data object as with `CS.Extensibility.Enums.DatasourceBehaviors.Multiple`; however, the Data array is limited to only one PI tag or AF element.
 
-![Time Series Single Behavior](./images/image012.png)
+![Time Series Single Behavior](./images2/image012.png)
 
 ##### Example data returned to `onDataUpdate` when `DataShape` equals `TimeSeries` and `datasourceBehavior` equals `DatasourceBehaviors.Multiple`
 
 **Without metadata**
 
-![Without metadata](./images/image013.png)
+![Without metadata](./images2/image013.png)
 
 **With metadata**
 
-![With metadata](./images/image014.png)
+![With metadata](./images2/image014.png)
 
 #### Configuring number and date formats
 
