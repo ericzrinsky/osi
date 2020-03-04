@@ -374,6 +374,7 @@ var definition = {
 <ul>
 	<li>Pass the $http provider as a parameter to the Initialization function</li>
 </ul>
+
 ```
 symbolPrimer.prototype.init = function (scope, elem, $http) {
 
@@ -383,6 +384,7 @@ symbolPrimer.prototype.init = function (scope, elem, $http) {
 <ul>
 	<li>Make a <code>GET HTTP</code> request for the list of all available asset servers and output results to the console.</li>
 </ul>
+
 ```javascript
 symbolPrimer.prototype.init = function(scope, elem, $http) {
     var baseUrl = PV.ClientSettings.PIWebAPIUrl;
