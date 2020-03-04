@@ -63,7 +63,7 @@ Add the following content to the file:
 </div>
 ```
 
-## Custom Style Sheet
+### Custom Style Sheet
 
 The Custom Style Sheet (CSS) provides styling for the Presentation and Configuration layers.
 
