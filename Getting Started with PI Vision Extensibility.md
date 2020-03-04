@@ -309,6 +309,7 @@ This function is called by the PI Vision infrastructure when the symbol is resiz
 <ul>
 	<li>The HTML DOM element, elem, passed into the Initialization function by PI Vision, for the symbol is used to find the symbol&#39;s container and then the container is resized.</li>
 </ul>
+
 ```javascript
 function symbolResize(width, height) {
     var SymbolContainer = elem.find('.SymbolPrimerLayout')[0];
@@ -325,6 +326,7 @@ This function is called by the PI Vision infrastructure anytime the configuratio
 <ul>
 	<li>The primer symbol uses this callback to validate the minimum and maximum values provided by the user in the Configuration pane.</li>
 </ul>
+
 ```javascript
 function configChange(newConfig, oldConfig) {
     if (newConfig && oldConfig && !angular.equals(newConfig, oldConfig)) {
