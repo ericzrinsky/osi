@@ -8,14 +8,14 @@ This document teaches you how to create a simple PI Vision extensibility symbol.
 1. Create the <code>ext</code> folder under the following path:
 
 ```
-PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext_
+PIVISION_INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext
 ```
 
 ### Icons Folder
 
 1. Create the <code>icons</code> folder under the following path:
 ```
-PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext\icons_
+PIVISION_INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext\icons
 ```
 
 ## Create the symbol files
@@ -23,7 +23,7 @@ PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext\icons_
 
 The Presentation layer controls what the user sees in PI Vision. The Presentation layer for a custom symbol is basic HTML with AngularJS for data and configuration binding.
 
-1. Create the presentation HTML file for the symbol in the `ext` folder and name it `sym-_symbolPrimer_-template.html`. Please note, the name is important. PI Vision automatically looks for custom symbols based on this naming convention.
+1. Create the presentation HTML file for the symbol in the `ext` folder and name it `sym-symbolPrimer-template.html`. Please note, the name is important. PI Vision automatically looks for custom symbols based on this naming convention.
 2. Add the following code to the file:
 
 ```html
@@ -38,7 +38,7 @@ The Presentation layer controls what the user sees in PI Vision. The Presentatio
 
 The Configuration layer, much like the Presentation layer, is comprised of basic HTML with AngularJS for data binding and provides a way to configure the symbol's appearance.
 
-1. Create the configuration HTML file for the symbol in the `ext` folder and name it `sym-_symbolPrimer_-config.html`.
+1. Create the configuration HTML file for the symbol in the `ext` folder and name it `sym-symbolPrimer-config.html`.
 2. Add the following code to the file:
 
 ```html
@@ -65,7 +65,7 @@ The Configuration layer, much like the Presentation layer, is comprised of basic
 
 The Custom Style Sheet (CSS) provides styling for the Presentation and Configuration layers.
 
-1. Create the CSS file for the symbol in the `ext` folder and name it `sym-_symbolPrimer_.css`.
+1. Create the CSS file for the symbol in the `ext` folder and name it `sym-symbolPrimer.css`.
 2. Add the following code to the file:
 
 ```CSS
@@ -99,7 +99,7 @@ The Custom Style Sheet (CSS) provides styling for the Presentation and Configura
 You can add an icon for this symbol to the PI Vision symbol selector in the Assets pane. PI Vision uses a default symbol icon if a custom symbol is not available. 
 
 1. Use your preferred image editor to create a 512 x 512 pixel image with a transparent background. 
-2. Save the image as `sym-_symbolPrimer_.png`. Copy the saved image into the `PIVISION\_INSTALLATION\_FOLDER\Scripts\app\editor\symbols\_ext\Icons_` folder. 
+2. Save the image as `sym-symbolPrimer.png`. Copy the saved image into the `PIVISION_INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext\Icons ` folder. 
 
 ### Implementation Layer
 
@@ -110,7 +110,7 @@ The JavaScript implementation file has four parts:
 * Initialization 
 * Event handlers.
 
-1. Create a file to contain the symbol's implementation in the `ext` folder and name it sym-_symbolPrimer_.js.
+1. Create a file to contain the symbol's implementation in the `ext` folder and name it `sym-symbolPrimer.js`.
 2. Add the following code to the file. The file contents will be explained below:
 
 ```javascript
@@ -219,7 +219,7 @@ The definition property, shown below, is a JSON object (key-value pairs) that se
 	* `Trend`: Multiple data source shape
 	* `Table`:  Multiple data source shape that allows you to specify columns and sorting
 * `configTitle`: This is the text for the configuration menu option that appears in the symbol's context (right-click) menu.
-* `StateVariables`:  Setting this to` [ 'MultistateColor']`  enables multi-state source configuration.
+* `StateVariables`:  Setting this to`['MultistateColor']`  enables multi-state source configuration.
 * `supportsCollectons`: This indicates whether you can include the symbol as part of a collection symbol.
 * `visObjectType`: This is the name of the function that was extended from `PV.deriveVisualizationFromBase`.
 
