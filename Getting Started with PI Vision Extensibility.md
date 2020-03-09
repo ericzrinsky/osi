@@ -260,9 +260,9 @@ symbolPrimer.prototype.init = function(scope, elem) {
 };
 ```
 
-#### Callback functions
+#### Event handlers
 
-The custom symbol you have created defines callback functions to handle data update, resize, and configuration change events.
+The custom symbol you have created defines event handlers (callback functions) to handle data update, resize, and configuration change events.
 
 ```javascript
 this.onDataUpdate = dataUpdate;
@@ -270,7 +270,7 @@ this.onResize = symbolResize;
 this.onConfigChange = configChange;
 ```
 
-#### `onDataUpdate` callback
+##### `onDataUpdate` callback
 
 The PI Vision infrastructure calls this function any time a data update occurs. The properties on the object returned are determined by the `DataShape` specified in the `getDefaultConfig` function.
 
@@ -294,7 +294,7 @@ function dataUpdate(data) {
 }
 ```
 
-#### `onResize` callback
+##### `onResize` callback
 
 The PI Vision infrastructure calls this function when you resize the symbol.
 
@@ -310,7 +310,7 @@ function symbolResize(width, height) {
 }
 ```
 
-#### `onConfigChange` callback
+##### `onConfigChange` callback
 
 The PI Vision infrastructure calls this function any time you update the symbol configuration in the Configuration layer.
 
