@@ -1,9 +1,9 @@
 # Getting Started with PI Vision Extensibility
 
-This document teaches you how to create a simple PI Vision extensibility symbol. The symbol accepts a single tag or attribute and displays its value, label, timestamp, and units. The interesting thing about this symbol is that it changes opacity based on the current value. The higher the value, the higher the opacity. In this way, a Process Engineer will only see data as it becomes an issue. You can think of it as a multi-stated Value symbol that changes opacity instead of color. The goal of this document is to provide you with a fully functional extensibility symbol framework that you can easily modify to create new symbols that meet your business requirements.
+This document teaches you how to create a simple PI Vision extensibility symbol. The symbol accepts a single tag or attribute and displays its value, label, timestamp, and units. This symbol changes opacity based on the current value; the higher the value, the higher the opacity. In this way, a user will only see data as it becomes an issue. You can think of it as a multi-stated Value symbol that changes opacity instead of color. The goal of this document is to provide you with a fully functional extensibility symbol framework that you can easily modify to create new symbols that meet your business requirements.
 
 ## Create the directory folders
-### Ext Folder
+### Ext Folder and Icons Folder
 
 1. Create the <code>ext</code> folder under the following path:
 
@@ -11,9 +11,7 @@ This document teaches you how to create a simple PI Vision extensibility symbol.
 PIVISION_INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext
 ```
 
-### Icons Folder
-
-1. Create the <code>icons</code> folder under the following path:
+2. Next, create the <code>icons</code> folder in the <code>ext</code> folder:
 ```
 PIVISION_INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext\icons
 ```
@@ -23,7 +21,7 @@ PIVISION_INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext\icons
 
 The Presentation layer controls what the user sees in PI Vision. The Presentation layer for a custom symbol is basic HTML with AngularJS for data and configuration binding.
 
-1. Create the presentation HTML file for the symbol in the `ext` folder and name it `sym-symbolPrimer-template.html`. Please note, the name is important. PI Vision automatically looks for custom symbols based on this naming convention.
+1. Create the presentation HTML file for the symbol in the `ext` folder and name it `sym-symbolPrimer-template.html`. Note that the name is important. PI Vision automatically looks for custom symbols based on this naming convention.
 2. Add the following code to the file:
 
 ```html
@@ -66,7 +64,7 @@ The Configuration layer, much like the Presentation layer, is comprised of basic
 The Custom Style Sheet (CSS) provides styling for the Presentation and Configuration layers.
 
 1. Create the CSS file for the symbol in the `ext` folder and name it `sym-symbolPrimer.css`.
-2. Add the following code to the file:
+2. Add the following code to the CSS file:
 
 ```CSS
 .ConfigLayout {
@@ -94,24 +92,24 @@ The Custom Style Sheet (CSS) provides styling for the Presentation and Configura
 }
 ```
 
-### Symbol Icon
+### Symbol icon
 
-You can add an icon for this symbol to the PI Vision symbol selector in the Assets pane. PI Vision uses a default symbol icon if a custom symbol is not available. 
+You can add an icon for this symbol to the PI Vision symbol selector in the `Assets` pane. PI Vision uses a default symbol icon if a custom symbol is not available. 
 
 1. Use your preferred image editor to create a 512 x 512 pixel image with a transparent background. 
-2. Save the image as `sym-symbolPrimer.png`. Copy the saved image into the `PIVISION_INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext\Icons ` folder. 
+2. Save the image as `sym-symbolPrimer.png` and copy the image into the `PIVISION_INSTALLATION_FOLDER\Scripts\app\editor\symbols\ext\Icons` folder. 
 
-### Implementation Layer
+### Implementation layer
 
 The JavaScript implementation file has four parts: 
 
 * Definition 
 * Registration 
 * Initialization 
-* Event handlers.
+* Event handlers
 
 1. Create a file to contain the symbol's implementation in the `ext` folder and name it `sym-symbolPrimer.js`.
-2. Add the following code to the file. The file contents will be explained below:
+2. Add the following code to the file. The file contents are explained below:
 
 ```javascript
 (function(PV) {
@@ -195,7 +193,7 @@ The JavaScript implementation file has four parts:
 
 #### Symbol wrapper
 
-The Implementation layer is wrapped in an immediately invoked function expression (IIFE). This function accepts a global PI Visualization object, which is passed in as a parameter.
+The Implementation layer is wrapped in an immediately invoked function expression (IIFE). This function accepts a global PI Visualization object that is passed in as a parameter.
 
 ```javascript
 (function(PV) {
@@ -208,7 +206,7 @@ The Implementation layer is wrapped in an immediately invoked function expressio
 
 #### Definition object
 
-The definition property, shown below, is a JSON object (key-value pairs) that sets defaults for the symbol.
+The definition property is a JSON object (key-value pairs) that sets default attributes for the symbol.
 
 * `typeName`: This is the name of the symbol. It appears as a tooltip when you hover the mouse over the symbol's icon. 
 * `datasourceBehavior`: Setting this property to `Single` allows you to drag and drop a single data item onto a display to create the symbol.
@@ -219,7 +217,7 @@ The definition property, shown below, is a JSON object (key-value pairs) that se
 	* `Trend`: Multiple data source shape
 	* `Table`:  Multiple data source shape that allows you to specify columns and sorting
 * `configTitle`: This is the text for the configuration menu option that appears in the symbol's context (right-click) menu.
-* `StateVariables`:  Setting this to`['MultistateColor']`  enables multi-state source configuration.
+* `StateVariables`:  Setting this to`['MultistateColor']` enables multi-state source configuration.
 * `supportsCollectons`: This indicates whether you can include the symbol as part of a collection symbol.
 * `visObjectType`: This is the name of the function that was extended from `PV.deriveVisualizationFromBase`.
 
@@ -254,7 +252,7 @@ var definition = {
 Use the Initialization function to set callback functions for the symbol. These drive the symbol's behavior. The function accepts scope and element parameters.
 
 * `scope`: Provides access to PI Vision variables available to the symbol
-* `elem`: Provides access to the HTML DOM element of the symbol's presentation layer
+* `elem`: Provides access to the HTML DOM element of the symbol's Presentation layer
 
 ```javascript
 symbolPrimer.prototype.init = function(scope, elem) {
@@ -277,7 +275,7 @@ this.onConfigChange = configChange;
 The PI Vision infrastructure calls this function any time a data update occurs. The properties on the object returned are determined by the `DataShape` specified in the `getDefaultConfig` function.
 
 * Infrequently changed metadata values such as `label`, `units`, and `path` are contained in the first callback invocation and intermittently thereafter. The code checks to see if the `label` and `units` were provided prior to using them.
-* The primer symbol sets the opacity for the presentation layer based on the data value and the configured minimum/maximum. You can use the PI Web API to obtain the `min` and `max` data item values.
+* The primer symbol sets the opacity for the Presentation layer based on the data value and the configured minimum/maximum. Use the PI Web API to obtain the `min` and `max` data item values.
 
 
 ```javascript
