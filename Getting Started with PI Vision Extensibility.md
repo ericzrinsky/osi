@@ -333,18 +333,18 @@ function isNumeric(n) {
 
 ### The symbol in PI Vision
 
-We created an ![Symbol Primer](./images/image001.png) icon for the symbol primer. PI Vision displays this icon in the Assets tool panel.
+We created an ![Symbol Primer](./images/image100.png) icon for the symbol primer. PI Vision displays this icon in the Assets tool panel.
 
 To use the symbol:
 
-1. Click the ![Symbol Primer](./images/image001.png) icon.
+1. Click the ![Symbol Primer](./images/image100.png) icon.
 2. Navigate to an attribute with a numeric value.
 3. Drag the attribute onto the display panel.
 4. To display the configuration panel:
      1. Right-click the symbol to display the popup context menu.
      2. Click the "Format Symbol Primer" menu option.
 
- ![PI Vision 3 Display](./images/image003.png)
+ ![PI Vision 3 Display](./images/image102.png)
 
 ## Addendum
 
